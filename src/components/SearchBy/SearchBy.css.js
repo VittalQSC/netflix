@@ -1,6 +1,6 @@
 export default {
     searchBy: {
-        margin: "2px"
+        margin: "10px 2px"
     },
     form: {
         display: "inline-block"

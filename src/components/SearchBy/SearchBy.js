@@ -23,7 +23,7 @@ class SearchBy extends Component {
 
     render() {
         return (
-            <div class="searchBy" style={styles.searchBy}>
+            <div className="searchBy" style={styles.searchBy}>
                 <title style={styles.title}>
                     <strong>
                     SEARCH BY: 
