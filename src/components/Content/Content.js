@@ -15,13 +15,6 @@ import styles from "./Content.css"
 //     res.json().then(v => { debugger; })
 // })
 
-const mapStateToProps = state => ({
-    films: state.films
-});
-
-const mapDispatchToProps = dispatch => ({
-    // search: (search) => dispatch(fetchFilms(search))
-});
 
 
 const ContentHeaderRouter = ({ films }) => (<div>
@@ -45,7 +38,7 @@ class Content extends Component {
                     <ul>
                         {
                             this.props.films.length > 0 ? this.props.films.map(v=><Film key={v4()}/>) 
-                                                        : "No Films Found"
+                            : "No Films Found"
                         }
                     </ul>
                 </ContentBody>
@@ -53,5 +46,13 @@ class Content extends Component {
         );
     }
 }
+
+const mapStateToProps = state => ({
+    films: state.films
+});
+
+const mapDispatchToProps = dispatch => ({
+    // search: (search) => dispatch(fetchFilms(search))
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Content));
