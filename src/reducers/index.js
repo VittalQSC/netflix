@@ -9,5 +9,13 @@ export default combineReducers({
             default:
                 return "" + searchBy;
         }
+    },
+    sortBy: (sortBy = "rating", action) => {
+        switch (action.type) {
+            case "SORT_BY":
+                return action.payload;
+            default:
+                return "" + sortBy;
+        }        
     }
 })

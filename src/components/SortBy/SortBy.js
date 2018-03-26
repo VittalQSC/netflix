@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setSortByOption } from './../../actions';
 import styles from './SortBy.css';
 
 class SortBy extends Component {
     constructor() {
         super();
 
-        this.state = {
-            selectedOption: 'rating'
-        }
-
         this.onChange = this.onChange.bind(this);
         this.isChecked = this.isChecked.bind(this);
     }
 
     onChange(e) {
-        this.setState({ selectedOption: e.target.value });
+        this.props.setOption(e.target.value);
     }
 
     isChecked(value) {
-        return this.state.selectedOption === value;
+        return this.props.selectedOption === value;
     }
 
     render() {
+        console.log(this.props)
         return (
             <div style={Object.assign({}, this.props.style, styles.sortBy)}>
                 <title style={styles.title}>
@@ -35,7 +34,7 @@ class SortBy extends Component {
                         checked={this.isChecked("release_date")}
                         onChange={this.onChange}>
                     </input>
-                    <label style={styles.label(this.state.selectedOption === "release_date")} htmlFor="release_date">
+                    <label style={styles.label(this.props.selectedOption === "release_date")} htmlFor="release_date">
                         <strong>
                             release date
                         </strong>
@@ -44,7 +43,7 @@ class SortBy extends Component {
                         value="rating"
                         checked={this.isChecked("rating")}
                         onChange={this.onChange}></input>
-                    <label style={styles.label(this.state.selectedOption === "rating")} htmlFor="rating">
+                    <label style={styles.label(this.props.selectedOption === "rating")} htmlFor="rating">
                         <strong>
                             rating
                         </strong>
@@ -56,4 +55,12 @@ class SortBy extends Component {
     }
 }
 
-export default SortBy;
+const mapStateToProps = state => ({
+    selectedOption: state.sortBy
+});
+
+const mapDispatchToProps = dispatch => ({
+    setOption: option => dispatch(setSortByOption(option))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SortBy);

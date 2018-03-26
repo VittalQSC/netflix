@@ -1,0 +1,1 @@
+export default option => ({ type: "SORT_BY", payload: option })

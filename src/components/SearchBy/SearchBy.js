@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import {setSearchByOption} from './../../actions';
 import styles from './SearchBy.css';
 
 class SearchBy extends Component {
@@ -54,7 +55,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setOption: option => dispatch({type: "SEARCH_BY", payload: option})
+    setOption: option => dispatch(setSearchByOption(option))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBy);

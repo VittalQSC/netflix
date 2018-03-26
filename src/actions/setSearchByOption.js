@@ -1,0 +1,1 @@
+export default option => ({ type: "SEARCH_BY", payload: option })
