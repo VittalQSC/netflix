@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import styles from './Film.css';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Redirect,
+    withRouter
+} from "react-router-dom";
 
 class Film extends Component {
     render() {
         return (
-            <div style={styles.film}>
+            <div style={styles.film} onClick={()=>{
+                this.props.history.push('/');
+            }}>
                 <span style={styles.filmImg}></span>
                 <div>center body</div>
                 <div>genre</div>
@@ -13,4 +22,4 @@ class Film extends Component {
     }
 }
 
-export default Film;
+export default withRouter(Film);
