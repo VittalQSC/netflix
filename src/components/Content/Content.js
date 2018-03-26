@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // import { withRouter } from 'react-router'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 import v4 from 'uuid';
 import ContentHeader from './ContentHeader';
 import ContentBody from './ContentBody';
@@ -14,10 +15,19 @@ import styles from "./Content.css"
 //     res.json().then(v => { debugger; })
 // })
 
-const ContentHeaderRouter = () => (<div>
+const mapStateToProps = state => ({
+    films: state.films
+});
+
+const mapDispatchToProps = dispatch => ({
+    // search: (search) => dispatch(fetchFilms(search))
+});
+
+
+const ContentHeaderRouter = ({ films }) => (<div>
     <Route exact path="/" render={() => (
         <div>
-            <span style={{ textAlign: "center" }}>movies found</span>
+            <span style={{ textAlign: "center" }}>{films.length > 0 && "movies found " + films.length}</span>
             <SortBy style={styles.sortBy} />
         </div>
     )}></Route>
@@ -29,11 +39,14 @@ class Content extends Component {
         return (
             <div className={this.props.className} style={styles.content}>
                 <ContentHeader>
-                    <ContentHeaderRouter />
+                    <ContentHeaderRouter films={this.props.films} />
                 </ContentHeader>
                 <ContentBody>
                     <ul>
-                        {[1,1,1,1,1].map(v=><Film key={v4()}/>)}
+                        {
+                            this.props.films.length > 0 ? this.props.films.map(v=><Film key={v4()}/>) 
+                                                        : "No Films Found"
+                        }
                     </ul>
                 </ContentBody>
             </div>
@@ -41,4 +54,4 @@ class Content extends Component {
     }
 }
 
-export default Content;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Content));

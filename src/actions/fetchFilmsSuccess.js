@@ -1,0 +1,1 @@
+export default (films) => ({type: "SEARCH_FILMS", payload: films})

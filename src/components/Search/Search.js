@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import SearchBy from './../SearchBy/SearchBy';
+import { fetchFilms } from './../../actions';
 import styles from "./Search.css";
+
 class Search extends Component {
     constructor() {
         super();
@@ -16,11 +19,11 @@ class Search extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        alert(this.state.value);
-        // this.setState({ value: '' });
+        this.props.search(this.state.value);
     }
 
     render() {
+        console.log(this.props.films);
         return (
             <div style={styles.search}>
                 <header style={styles.header}>FIND YOUR MOVIE</header>
@@ -40,4 +43,10 @@ class Search extends Component {
     }
 }
 
-export default Search;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+    search: (search) => dispatch(fetchFilms(search))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

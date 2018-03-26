@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
 
-
 export default combineReducers({
     searchBy: (searchBy = "title", action) => {
         switch (action.type) {
@@ -17,5 +16,13 @@ export default combineReducers({
             default:
                 return "" + sortBy;
         }        
+    },
+    films: (films = [], action) => {
+        switch (action.type) {
+            case "SEARCH_FILMS":
+                return [...action.payload]
+            default:
+                return [...films]
+        }
     }
 })
