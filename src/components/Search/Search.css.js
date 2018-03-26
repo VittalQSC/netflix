@@ -1,7 +1,7 @@
 export default {
     search: {},
     header: {
-        "margin-bottom": "10px",
+        "marginBottom": "10px",
         "color": "white"
     },
     input: {
@@ -12,7 +12,7 @@ export default {
         color: "white",
         background: "black",
         border: "1px solid black",
-        "border-radius": "1px"
+        "borderRadius": "1px"
     },
     button: {
         color: "white",

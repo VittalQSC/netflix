@@ -8,15 +8,15 @@ export default {
     title: {
         display: "inline-block",
         color: "white",
-        "font-size": "12px"
+        "fontSize": "12px"
     },
     label: (checked) => ({
         padding: "2px 5px",
         margin: "2px 5px",
         background: checked ? "#F35555" : "grey",
         color: "white",
-        "font-size": "12px",
-        "border-radius": "3px"
+        "fontSize": "12px",
+        "borderRadius": "3px"
     }),
     input: {
         display: "none"

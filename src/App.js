@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';
+import Content from './components/Content/Content';
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,7 +14,7 @@ class App extends Component {
           <div>Netflix roulette</div> 
           <Search></Search>
         </Header>
-        <main className="content">Contens</main>
+        <Content className="content"></Content>
         <Footer></Footer>
       </div>
     );

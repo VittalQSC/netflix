@@ -16,7 +16,8 @@ class Search extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        alert(1);
+        alert(this.state.value);
+        // this.setState({ value: '' });
     }
 
     render() {
@@ -30,7 +31,7 @@ class Search extends Component {
                         style={styles.input}
                     ></input>
                     <button type="submit" style={styles.button}>
-                        <i class="fa fa-search">SEARCH</i>
+                        <i className="fa fa-search">SEARCH</i>
                     </button>
                 </form>
                 <SearchBy></SearchBy>
