@@ -12,7 +12,7 @@ class Film extends Component {
     render() {
         return (
             <div style={styles.film} onClick={()=>{
-                this.props.history.push('/');
+                this.props.history.push('/film/1');
             }}>
                 <span style={styles.filmImg}></span>
                 <div>center body</div>

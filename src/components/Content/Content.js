@@ -33,7 +33,7 @@ class Content extends Component {
                 </ContentHeader>
                 <ContentBody>
                     <ul>
-                        {[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map(v=><Film key={v4()}/>)}
+                        {[1,1,1,1,1].map(v=><Film key={v4()}/>)}
                     </ul>
                 </ContentBody>
             </div>

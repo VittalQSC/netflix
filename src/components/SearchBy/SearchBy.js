@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import styles from './SearchBy.css';
 
 class SearchBy extends Component {
     constructor() {
         super();
 
-        this.state = {
-            selectedOption: 'title'
-        }
-    
         this.onChange = this.onChange.bind(this);
         this.isChecked = this.isChecked.bind(this);
     }
 
     onChange(e) {
-        this.setState({selectedOption:e.target.value});
+        this.props.setOption(e.target.value);
     }
 
     isChecked(value) {
-        return this.state.selectedOption === value;
+        return this.props.selectedOption === value;
     }
 
     render() {
@@ -35,14 +32,14 @@ class SearchBy extends Component {
                         checked={this.isChecked("title")} 
                         onChange={this.onChange}>
                     </input>
-                    <label style={styles.label(this.state.selectedOption === "title")} htmlFor="title">
+                    <label style={styles.label(this.props.selectedOption === "title")} htmlFor="title">
                         TITLE 
                     </label>
                     <input style={styles.input} id="director" type="radio" name="gender" 
                         value="director" 
                         checked={this.isChecked("director")} 
                         onChange={this.onChange}></input>
-                    <label style={styles.label(this.state.selectedOption === "director")} htmlFor="director">
+                    <label style={styles.label(this.props.selectedOption === "director")} htmlFor="director">
                         DIRECTOR 
                     </label>
                             
@@ -52,4 +49,12 @@ class SearchBy extends Component {
     }
 }
 
-export default SearchBy;
+const mapStateToProps = state => ({
+    selectedOption: state.searchBy
+});
+
+const mapDispatchToProps = dispatch => ({
+    setOption: option => dispatch({type: "SEARCH_BY", payload: option})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBy);
