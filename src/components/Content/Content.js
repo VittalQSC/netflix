@@ -27,6 +27,14 @@ const ContentHeaderRouter = ({ films }) => (<div>
     <Route path="/film/:filmId" render={() => (<div>Films by </div>)}></Route>
 </div>);
 
+const FilmsList = ({ films }) => (<ul>
+    {
+        films.length > 0 
+            ? films.map(film => <Film {...film} key={v4()} />)
+            : "No Films Found"
+    }
+</ul>);
+
 class Content extends Component {
     render() {
         return (
@@ -35,12 +43,7 @@ class Content extends Component {
                     <ContentHeaderRouter films={this.props.films} />
                 </ContentHeader>
                 <ContentBody>
-                    <ul>
-                        {
-                            this.props.films.length > 0 ? this.props.films.map(v=><Film key={v4()}/>) 
-                            : "No Films Found"
-                        }
-                    </ul>
+                    <FilmsList films={this.props.films} />
                 </ContentBody>
             </div>
         );

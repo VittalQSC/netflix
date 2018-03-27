@@ -20,7 +20,6 @@ class SortBy extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div style={Object.assign({}, this.props.style, styles.sortBy)}>
                 <title style={styles.title}>

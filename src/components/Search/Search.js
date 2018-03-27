@@ -23,7 +23,6 @@ class Search extends Component {
     }
 
     render() {
-        console.log(this.props.films);
         return (
             <div style={styles.search}>
                 <header style={styles.header}>FIND YOUR MOVIE</header>

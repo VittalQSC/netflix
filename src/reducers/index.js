@@ -24,5 +24,13 @@ export default combineReducers({
             default:
                 return [...films]
         }
+    },
+    genres: (genres = [], action) => {
+        switch (action.type) {
+            case "RECIEVE_GENRES":
+                return [...action.payload.genres]
+            default:
+                return [...genres]
+        }
     }
 })
