@@ -27,10 +27,18 @@ const ContentHeaderRouter = ({ films }) => (<div>
     <Route path="/film/:filmId" render={() => (<div>Films by </div>)}></Route>
 </div>);
 
-const FilmsList = ({ films }) => (<ul>
+const FilmsList = ({ films, sortBy }) => (<ul>
     {
         films.length > 0 
-            ? films.map(film => <Film {...film} key={v4()} />)
+            ? (films => {
+                const toDate = (dateStr) => (new Date(dateStr || new Date()))
+                const comparator = (a, b) => (sortBy === "rating" 
+                        ? b.vote_average - a.vote_average
+                        : toDate(b.release_date) - toDate(a.release_date)
+                );
+                films.sort(comparator);
+                return films;
+              })(films).map(film => <Film {...film} key={v4()} />)
             : "No Films Found"
     }
 </ul>);
@@ -43,7 +51,7 @@ class Content extends Component {
                     <ContentHeaderRouter films={this.props.films} />
                 </ContentHeader>
                 <ContentBody>
-                    <FilmsList films={this.props.films} />
+                    <FilmsList films={this.props.films} sortBy={this.props.sortBy} />
                 </ContentBody>
             </div>
         );
@@ -51,7 +59,8 @@ class Content extends Component {
 }
 
 const mapStateToProps = state => ({
-    films: state.films
+    films: state.films,
+    sortBy: state.sortBy
 });
 
 const mapDispatchToProps = dispatch => ({

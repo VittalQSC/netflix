@@ -12,6 +12,7 @@ class SearchBy extends Component {
     }
 
     onChange(e) {
+        console.log(this.props.selectedOption)
         this.props.setOption(e.target.value);
     }
 
@@ -36,12 +37,12 @@ class SearchBy extends Component {
                     <label style={styles.label(this.props.selectedOption === "title")} htmlFor="title">
                         TITLE 
                     </label>
-                    <input style={styles.input} id="director" type="radio" name="gender" 
-                        value="director" 
-                        checked={this.isChecked("director")} 
+                    <input style={styles.input} id="tv" type="radio" name="gender" 
+                        value="tv" 
+                        checked={this.isChecked("tv")} 
                         onChange={this.onChange}></input>
-                    <label style={styles.label(this.props.selectedOption === "director")} htmlFor="director">
-                        DIRECTOR 
+                    <label style={styles.label(this.props.selectedOption === "tv")} htmlFor="tv">
+                        TV 
                     </label>
                             
                 </form>

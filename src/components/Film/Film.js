@@ -33,7 +33,10 @@ class Film extends Component {
                 }>
                 
                 </img>
-                <div style={styles.title}>{this.props.title}</div>
+                <div style={styles.title}>
+                    {this.props.title}
+                    <span style={styles.year}>{(new Date(this.props.release_date)).getFullYear() || ""}</span>
+                </div>
                 <div style={styles.genre}>{
                     this.getFilmGenres()
                 }</div>

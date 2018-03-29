@@ -21,6 +21,16 @@ export default {
     },
     title: {
         display: "inline-block",
-        height: "20px"
+        height: "20px",
+        width: "100%"
+    },
+    year: {
+        fontSize: "10px",
+        padding: "3px",
+        borderRadius: "1px",
+        border: "1px solid grey",
+        color: "grey",
+        float: "right",
+        marginLeft: "5px"
     }
 }

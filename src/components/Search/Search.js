@@ -19,7 +19,8 @@ class Search extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        this.props.search(this.state.value);
+        console.log(this.props)
+        this.props.search(this.state.value, this.props.searchBy);
     }
 
     render() {
@@ -42,10 +43,12 @@ class Search extends Component {
     }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+    searchBy: state.searchBy
+});
 
 const mapDispatchToProps = dispatch => ({
-    search: (search) => dispatch(fetchFilms(search))
+    search: (search, searchBy) => dispatch(fetchFilms(search, searchBy))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
