@@ -1,0 +1,1 @@
+export default (film) => ({ type: "FETCH_FILM", payload: film })

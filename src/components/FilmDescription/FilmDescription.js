@@ -1,25 +1,55 @@
 import React, { Component } from 'react';
+import FilmDescriptionGetter from './FilmDescriptionGetter';
+import fetchFilm from './../../actions/fetchFilm.js';
+import { connect } from 'react-redux';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Redirect,
+    withRouter
+} from "react-router-dom";
 import styles from './FilmDescription.css';
 
-class FilmDescription extends Component {
+class FilmDescription extends FilmDescriptionGetter {
+    constructor () {
+        super();
+    }
+
+    componentDidMount() {
+        this.props.fetchFilm(this.props.match.params.filmId);
+    }
+
     render() {
         return (
             <div style={styles.filmDescription}>
-                <div style={styles.filmImg}></div>
+                <img style={styles.filmImg} src={this.imgSrc}></img>
                 <div style={styles.description}>
-                    <header><h2 style={styles.h2}>Film header!</h2> <span style={styles.mark}>4.0</span> </header>
-                    <div style={styles.metaInfo}>Wins!</div>
+                    <header>
+                        <h2 style={styles.h2}>{this.title}</h2> 
+                        <span style={styles.mark}>{this.mark}</span> 
+                    </header>
+                    <div style={styles.metaInfo}>Voted: {this.wasVoted}</div>
                     <div>
-                        <strong style={styles.metric}>Year</strong>
-                        <strong style={styles.metric}>Time</strong>
+                        <strong style={styles.metric}>{this.year}</strong>
+                        <strong style={styles.metric}>{this.runtime}</strong>
                     </div>
-                    <div style={styles.innerFilmDescription}>Film descriotion</div>
-                    <div style={styles.metaInfo}>Director: director</div>
-                    <div style={styles.metaInfo}>Cast: Cast</div>
+                    <div style={styles.innerFilmDescription}>{this.description}</div>
+                    {/* <div style={styles.metaInfo}>Director: director</div> */}
+                    <div style={styles.metaInfo}>Genres: {this.genres}</div>
                 </div>
             </div>
         );
     }
 }
 
-export default FilmDescription;
+const mapStateToProps = state => ({
+    filmDescription: state.filmDescription,
+    genres: state.genres
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchFilm: id => dispatch(fetchFilm(id))
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FilmDescription));

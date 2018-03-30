@@ -32,5 +32,15 @@ export default combineReducers({
             default:
                 return [...genres]
         }
+    },
+    filmDescription: (film = {}, action) => {
+        switch (action.type) {
+            case "FETCH_FILM":
+            debugger;
+                // return [...action.payload.genres]
+                return {...action.payload}
+            default:
+                return {...film}
+        }       
     }
 })
