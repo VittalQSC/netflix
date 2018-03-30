@@ -17,7 +17,13 @@ class FilmDescription extends FilmDescriptionGetter {
     }
 
     componentDidMount() {
-        this.props.fetchFilm(this.props.match.params.filmId);
+        this.props.fetchFilm(this.props.match.params.filmId, this.props.searchBy);
+    }
+    
+    componentWillReceiveProps(newProps) {
+        if (this.props.match.params.filmId !== newProps.match.params.filmId) {
+            this.props.fetchFilm(newProps.match.params.filmId, this.props.searchBy);
+        }
     }
 
     render() {
@@ -45,11 +51,11 @@ class FilmDescription extends FilmDescriptionGetter {
 
 const mapStateToProps = state => ({
     filmDescription: state.filmDescription,
-    genres: state.genres
+    searchBy: state.searchBy
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchFilm: id => dispatch(fetchFilm(id))
+    fetchFilm: (id, searchBy) => dispatch(fetchFilm(id, searchBy))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FilmDescription));

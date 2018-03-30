@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FilmGetter from './FilmGetter';
 import { connect } from 'react-redux';
 import {
     BrowserRouter as Router,
@@ -9,17 +10,10 @@ import {
 } from "react-router-dom";
 import styles from './Film.css';
 
-class Film extends Component {
+class Film extends FilmGetter {
     constructor () {
         super();
         
-    }
-
-    getFilmGenres () {
-        return this.props.genres && this.props.genres
-        .filter(genre => this.props.genre_ids.includes(genre.id))
-        .map(filmGenre => filmGenre.name)
-        .join(", ");
     }
 
     render() {
@@ -27,15 +21,10 @@ class Film extends Component {
             <div style={styles.film} onClick={()=>{
                 this.props.history.push(`/film/${this.props.id}`);
             }}>
-                <img style={styles.filmImg} src={
-                    this.props.poster_path 
-                    && 'https://image.tmdb.org/t/p/w500' + this.props.poster_path
-                }>
-                
-                </img>
+                <img style={styles.filmImg} src={this.imgSrc}></img>
                 <div style={styles.title}>
                     {this.props.title}
-                    <span style={styles.year}>{(new Date(this.props.release_date)).getFullYear() || ""}</span>
+                    <span style={styles.year}>{this.year}</span>
                 </div>
                 <div style={styles.genre}>{
                     this.getFilmGenres()

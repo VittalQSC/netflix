@@ -19,7 +19,6 @@ class Search extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        console.log(this.props)
         this.props.search(this.state.value, this.props.searchBy);
     }
 

@@ -20,6 +20,9 @@ export default {
     mark: {
         color: "green",
         padding: "5px",
+        margin: "5px",
+        width: "10px",
+        height: "10px",
         borderRadius: "100%",
         border: "2px solid green" 
     },
