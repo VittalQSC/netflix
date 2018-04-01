@@ -23,7 +23,7 @@ class Film extends FilmGetter {
             }}>
                 <img style={styles.filmImg} src={this.imgSrc}></img>
                 <div style={styles.title}>
-                    {this.props.title}
+                    {this.title}
                     <span style={styles.year}>{this.year}</span>
                 </div>
                 <div style={styles.genre}>{

@@ -19,6 +19,8 @@ export default combineReducers({
     },
     films: (films = [], action) => {
         switch (action.type) {
+            case "CLEAR_HOME":
+                return [];
             case "SEARCH_FILMS":
                 return [...action.payload]
             default:
@@ -35,6 +37,8 @@ export default combineReducers({
     },
     filmDescription: (film = {}, action) => {
         switch (action.type) {
+            case "CLEAR_HOME":
+                return {};           
             case "FETCH_FILM":
                 return {...action.payload}
             default:

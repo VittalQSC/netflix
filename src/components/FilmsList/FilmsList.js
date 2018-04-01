@@ -30,7 +30,7 @@ class FilmsList extends Component {
         }
     }
 
-    get comporator() {
+    get comparator() {
         const toDate = (dateStr) => {
             return new Date(dateStr || new Date());
         };
@@ -41,8 +41,8 @@ class FilmsList extends Component {
     }
 
     chainSort(films) {
-        films.slice().sort(this.comparator);
-        return films;        
+        const sortedFilms = films.slice().sort(this.comparator);
+        return sortedFilms;        
     }
 
     render() {
@@ -57,7 +57,8 @@ class FilmsList extends Component {
 };
 
 const mapStateToProps = state => ({
-    searchBy: state.searchBy
+    searchBy: state.searchBy,
+    sortBy: state.sortBy
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -12,6 +12,10 @@ class FilmGetter extends Component {
         return this.props.poster_path && 'https://image.tmdb.org/t/p/w500' + this.props.poster_path;
     }
 
+    get title () {
+        return this.props.title || this.props.original_name;
+    }
+
     get year() {
         return (new Date(this.props.release_date)).getFullYear() || "";
     }
