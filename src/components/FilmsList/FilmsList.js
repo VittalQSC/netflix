@@ -18,7 +18,6 @@ class FilmsList extends Component {
     }
     componentDidMount() {
         if (this.props.match.params.filmId) {
-            console.log("componentDidMount ", this.props.searchBy)
             this.props.fetchSimilar(this.props.match.params.filmId, this.props.searchBy);
         }
     }
@@ -49,7 +48,7 @@ class FilmsList extends Component {
         return (<div>
             {
                 this.chainSort(this.props.films)
-                    .map(film => <Film {...film} key={v4()} />)
+                    .map(film => <Film {...film} key={v4()}/>)
 
             }
         </div>)

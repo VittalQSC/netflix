@@ -13,7 +13,7 @@ class FilmGetter extends Component {
     }
 
     get title () {
-        return this.props.title || this.props.original_name;
+        return this.props.title || this.props.original_name || this.props.name;
     }
 
     get year() {
