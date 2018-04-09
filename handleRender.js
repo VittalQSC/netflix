@@ -1,10 +1,11 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
-import store from './src/store';
 import App from './src/App';
 import { StaticRouter as Router, Route, Link } from "react-router-dom";
 import { renderRoutes } from 'react-router-config';
+
+import { matchRoutes } from 'react-router-config';
 
 function renderFullPage(html, preloadedState) {
     return `
@@ -26,9 +27,20 @@ function renderFullPage(html, preloadedState) {
     `
 }
 
-export default function handleRender(req, res) {
+export default function handleRender(req, res, store) {
+    // debugger;
+    // const branch = matchRoutes([
+    //     {
+    //         path: '/film/:filmId/'
+    //     }
+    // ], req.url);
+    // console.log(branch)
     // Create a new Redux store instance
     let context = {};
+
+    // Grab the initial state from our Redux store
+    const preloadedState = store.getState();
+    
     // Render the component to a string
     const html = renderToString(
         <Provider store={store}>
@@ -38,8 +50,7 @@ export default function handleRender(req, res) {
         </Provider>
     )
 
-    // Grab the initial state from our Redux store
-    const preloadedState = store.getState()
+
 
     // Send the rendered page back to the client
     res.send(renderFullPage(html, preloadedState))
