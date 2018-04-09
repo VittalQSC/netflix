@@ -17,7 +17,9 @@ class FilmDescription extends FilmDescriptionGetter {
     }
 
     componentDidMount() {
-        this.props.fetchFilm(this.props.match.params.filmId, this.props.searchBy);
+        if (this.props.filmDescription.id !== +this.props.match.params.filmId) {
+            this.props.fetchFilm(this.props.match.params.filmId, this.props.searchBy);
+        }
     }
     
     componentWillReceiveProps(newProps) {
