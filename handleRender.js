@@ -5,8 +5,6 @@ import App from './src/App';
 import { StaticRouter as Router, Route, Link } from "react-router-dom";
 import { renderRoutes } from 'react-router-config';
 
-import { matchRoutes } from 'react-router-config';
-
 function renderFullPage(html, preloadedState) {
     return `
     <!doctype html>
@@ -28,14 +26,6 @@ function renderFullPage(html, preloadedState) {
 }
 
 export default function handleRender(req, res, store) {
-    // debugger;
-    // const branch = matchRoutes([
-    //     {
-    //         path: '/film/:filmId/'
-    //     }
-    // ], req.url);
-    // console.log(branch)
-    // Create a new Redux store instance
     let context = {};
 
     // Grab the initial state from our Redux store
@@ -49,8 +39,6 @@ export default function handleRender(req, res, store) {
             </Router>
         </Provider>
     )
-
-
 
     // Send the rendered page back to the client
     res.send(renderFullPage(html, preloadedState))

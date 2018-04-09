@@ -16,23 +16,11 @@ server.use('/film', express.static('dist'));
 
 // server.get('/*', handleRender);
 server.use('/film/:id', (req, res, done) => {
-    const CollectResponses = (resNumber) => {
-        let counter = 0;
-        return () => {
-            counter++; 
-            if (counter === resNumber) {
-                done();
-            }
-        }
-    };
-    const collectResponses = CollectResponses(2, done);
     const searchBy = store.getState().searchBy;
-    fetchFilm(req.params.id, searchBy)(store.dispatch.bind(store)).then(() => {
-        collectResponses();
-    });
-    fetchSimilar(req.params.id, searchBy)(store.dispatch.bind(store)).then(() => {
-        collectResponses();
-    });
+    const fetchFilmProm = fetchFilm(req.params.id, searchBy)(store.dispatch.bind(store));
+    const fetchSimilarProm = fetchSimilar(req.params.id, searchBy)(store.dispatch.bind(store));
+
+    Promise.all([fetchFilmProm, fetchSimilarProm]).then(() => {done()});
 });
 
 server.get('/*', (req, res) => handleRender(req, res, store));
